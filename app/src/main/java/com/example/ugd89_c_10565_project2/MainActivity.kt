@@ -50,7 +50,13 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     @SuppressLint("SetTextI18n")
     override fun onSensorChanged(event: SensorEvent?) {
         if (event?.sensor?.type == Sensor.TYPE_ACCELEROMETER) {
-            sendNotification1()
+            val sides = event.values[0]
+            val upDown = event.values[1]
+
+            if (sides.toInt() == 3 || upDown.toInt() == 3) {
+                sendNotification1()
+            }
+
         }
     }
 
